@@ -43,19 +43,19 @@ public class PaginationActivity extends AppCompatActivity {
     }
 
     private PaginationAdapter paginationAdapter;
-    private int amountOfLoadData = 20;
+    private int amountOfLoadData = 100;
 
     private void initRecycler() {
         paginationAdapter = new PaginationAdapter();
 
         linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setReverseLayout(true);
+//        linearLayoutManager.setReverseLayout(true);
 
         activityCustomBinding.loadData.setLayoutManager(linearLayoutManager);
         activityCustomBinding.loadData.setAdapter(paginationAdapter);
     }
 
-    private int pageNumber = 1, minimumViewable = 2;
+    private int pageNumber = 0, minimumViewable = 30;
     private boolean isLoading = false;
 
     private void recyclerListener() {
@@ -118,7 +118,7 @@ public class PaginationActivity extends AppCompatActivity {
                     @Override
                     public List<String> apply(@NonNull Boolean value) throws Exception {
                         List<String> items = new ArrayList<>();
-                        for (int i = 1; i <= 20; i++) {
+                        for (int i = 1; i <= amountOfLoadData; i++) {
                             items.add("Item " + (page * amountOfLoadData + i));
                         }
                         return items;
